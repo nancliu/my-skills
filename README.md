@@ -15,6 +15,7 @@
 my-skills/
 ├── original/                # 个人原创技能区（当前 1 个：cn-blog-writing）
 │   ├── INDEX.md             # 原创技能索引
+│   ├── USAGE.md             # 使用方法 + 上传/发布原创技能规范（Agent 与用户必读）
 │   ├── TEMPLATE.md          # 新技能模板（复制它起步）
 │   └── cn-blog-writing/     # 示例：中文技术博客编写（掘金/知乎）
 ├── curated/                 # 收藏的第三方技能区（38 个，来自 mattpocock/skills）

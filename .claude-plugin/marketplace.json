@@ -11,6 +11,11 @@
       "license": "MIT"
     },
     {
+      "name": "chinese-technical-report",
+      "source": "./original/chinese-technical-report",
+      "description": "按中文技术/赛题研究报告规范撰写或修订报告（研究报告、附录、技术总结、案例结果报告）。强调章—节—段、图号表号配合、证据可核与领域用语。在用户要求写报告、改报告、对照知识库/规则表更新报告、检查中文表达，或编辑提交材料与研究报告类 Markdown 时使用。"
+    },
+    {
       "name": "claude-handoff",
       "source": "./curated/claude-handoff",
       "description": "Hand the current conversation off to a fresh background agent that picks up the work immediately.",

@@ -1,27 +1,28 @@
 # my-skills · 个人技能库（Claude Code / Cursor / Codex / 豆包 四端通用）
 
-一个公开的 AI 编程技能库：**39 个技能**，分 **原创（`original/`）** 与 **收藏（`curated/`）** 两区，Claude Code、Cursor、Codex、豆包四端开箱即用。
+一个公开的 AI 编程技能库：**40 个技能**，分 **原创（`original/`）** 与 **收藏（`curated/`）** 两区，Claude Code、Cursor、Codex、豆包四端开箱即用。
 
 ## 亮点
 
-- **39 个技能全部可用**：38 个收藏 + 1 个原创，每个都是标准 `SKILL.md`（frontmatter + 附属文件）
-- **来源可溯源**：37 个收藏技能已核实来自 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT License）；1 个为上游已移除技能的历史版本；`original/cn-blog-writing` 为用户本地原创
+- **40 个技能全部可用**：38 个收藏 + 2 个原创，每个都是标准 `SKILL.md`（frontmatter + 附属文件）
+- **来源可溯源**：37 个收藏技能已核实来自 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT License）；1 个为上游已移除技能的历史版本；`original/` 下 2 个为用户原创
 - **四端安装**：Claude Code 走 marketplace，Cursor / Codex 走 skills CLI，豆包直接上传技能目录
-- **实测**（本地路径）：`npx skills add /path/to/my-skills --list` 可在仓库根级发现全部 39 个技能（两层分区均可被 skills CLI 扫描）
+- **实测**（本地路径）：`npx skills add /path/to/my-skills --list` 可在仓库根级发现全部 40 个技能（两层分区均可被 skills CLI 扫描）
 
 ## 仓库结构
 
 ```
 my-skills/
-├── original/                # 个人原创技能区（当前 1 个：cn-blog-writing）
+├── original/                # 个人原创技能区（当前 2 个：cn-blog-writing、chinese-technical-report）
 │   ├── INDEX.md             # 原创技能索引
 │   ├── USAGE.md             # 使用方法 + 上传/发布原创技能规范（Agent 与用户必读）
 │   ├── TEMPLATE.md          # 新技能模板（复制它起步）
-│   └── cn-blog-writing/     # 示例：中文技术博客编写（掘金/知乎）
+│   ├── cn-blog-writing/     # 中文技术博客编写（掘金/知乎）
+│   └── chinese-technical-report/  # 中文技术/赛题研究报告编写
 ├── curated/                 # 收藏的第三方技能区（38 个，来自 mattpocock/skills）
 │   └── INDEX.md             # 收藏技能索引（逐技能来源 + 许可证）
 └── .claude-plugin/
-    └── marketplace.json     # Claude Code marketplace 清单（39 个 plugin）
+    └── marketplace.json     # Claude Code marketplace 清单（40 个 plugin）
 ```
 
 ## 安装（四端）
@@ -41,7 +42,7 @@ my-skills/
 用 Vercel 开源的 skills CLI（npm 包 `skills`）：
 
 ```bash
-# 预览仓库技能（实测根级可发现全部 39 个）
+# 预览仓库技能（实测根级可发现全部 40 个）
 npx skills add nancliu/my-skills --list
 
 # 全部安装到默认位置（~/.claude/skills）
@@ -76,9 +77,10 @@ npx skills add nancliu/my-skills --skill curated/tdd -y
 - **curated/ 37 个技能**：来自 [mattpocock/skills](https://github.com/mattpocock/skills)（Matt Pocock / Total TypeScript），**MIT License**（[LICENSE](https://github.com/mattpocock/skills/blob/main/LICENSE)，Copyright (c) 2026 Matt Pocock）。其中 6 个在上游仍属 `in-progress`（claude-handoff、loop-me、setup-ts-deep-modules、writing-beats、writing-fragments、writing-shape）。
 - **curated/resolving-merge-conflicts**：上游已移除（删除记录见上游仓库 `.changeset/`），本仓库保留的是历史版本，MIT 许可不变。
 - **original/cn-blog-writing**：用户原创（本地开发），基于 mattpocock/skills 的 writing-* 系列方法论二次创作。
+- **original/chinese-technical-report**：用户原创（自 traffic-sim-agent 赛题报告规范提炼），章—节—段与图表规范；知识库同步清单为示例。
 - 公开本仓库时请保留各技能目录内的上游许可证声明。
 
-> 数字口径（核验时间 2026-10-05）：39 技能 = curated 38（上游现役 37 + 历史版本 1）+ original 1。
+> 数字口径（核验时间 2026-10-05）：40 技能 = curated 38（上游现役 37 + 历史版本 1）+ original 2。
 
 ## 开始使用
 

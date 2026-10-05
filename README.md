@@ -7,7 +7,7 @@
 - **39 个技能全部可用**：38 个收藏 + 1 个原创，每个都是标准 `SKILL.md`（frontmatter + 附属文件）
 - **来源可溯源**：37 个收藏技能已核实来自 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT License）；1 个为上游已移除技能的历史版本；`original/cn-blog-writing` 为用户本地原创
 - **四端安装**：Claude Code 走 marketplace，Cursor / Codex 走 skills CLI，豆包直接上传技能目录
-- **实测**：`npx skills add nancliu/my-skills --list` 可在仓库根级发现全部技能（两层分区均可扫描）
+- **实测**（本地路径）：`npx skills add /path/to/my-skills --list` 可在仓库根级发现全部 39 个技能（两层分区均可被 skills CLI 扫描）
 
 ## 仓库结构
 
@@ -81,5 +81,5 @@ npx skills add nancliu/my-skills --skill curated/tdd -y
 
 ## 开始使用
 
-1. 仓库已推送至 GitHub（`github.com/nancliu/my-skills`），按上方四端任一方式安装即可；
+1. 仓库已在 GitHub 创建（`github.com/nancliu/my-skills`，当前为空）：`git push -u origin main` 推送后，按上方四端任一方式安装即可；
 2. 新增/更新技能：改 `original/` 或 `curated/` 后重新 `git push` 即生效。

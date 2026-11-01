@@ -47,13 +47,13 @@ description: >-
 
 ```text
 ### N.M 节标题
-　　<中心段：判断 → 依据 → 边界；段首两全角空格>
-　　如图 N-x / 见表 N-y ……
+  <中心段：判断 → 依据 → 边界；段首两英文空格>
+  如图 N-x / 见表 N-y ……
 <图本体>
 <p align="center">图 N-x 题名</p>     ← 图题在图下方居中
 <p align="center">表 N-y 题名</p>     ← 表题在表上方居中
 <表本体>
-　　<可选读法句>
+  <可选读法句>
 ```
 
 | 内容 | 优先载体 |
@@ -140,5 +140,8 @@ description: >-
 ## 附加材料
 
 - 章—节—段与图表：[`structure-and-figures.md`](structure-and-figures.md)
+- 修订模式：[`revision-patterns.md`](revision-patterns.md)
+- 标准国际会议参会报告：[`standards-meeting-report.md`](standards-meeting-report.md)
+- Markdown 转 Word 构建：[`md-to-docx-build.md`](md-to-docx-build.md)
 - 知识库章节同步：[`kb-report-sync.md`](kb-report-sync.md)
 - 提交约束：项目内 `docs/submission/README.md`（若有）

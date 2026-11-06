@@ -32,6 +32,11 @@
       "description": "编写、修订技术要求、技术标准、建设指南、规范、规程等标准类文档时使用。覆盖完整流程：对象定位与需求调研、章节提纲设计、标准条文正文编写、规范性用语（应/宜/可）、参照式引用规范、条款编号与格式纪律、结构审计与交付。适用于行业技术要求、工程建设标准、设计指南、企业技术规范、编制说明等的新建或修订场景，以及标准中某个专业部分（如感知、通信、平台、网络安全、应用场景）的章节编写。"
     },
     {
+      "name": "dev-language-selection",
+      "source": "./original/dev-language-selection",
+      "description": "新项目立项与技术评审时的开发语言选型决策。覆盖 Ruby / Python / Go / Java / C/C++ / Rust / Kotlin 的主场、GUI、并发、交付、生态短板、适合团队与避坑规则。在用户要求选语言、技术选型、语言对比、立项评审、决定用 Python/Go/Java/Ruby/C++/Rust/Kotlin，或讨论 GUI/并发/单二进制交付时使用。"
+    },
+    {
       "name": "code-review",
       "source": "./curated/code-review",
       "description": "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\".",

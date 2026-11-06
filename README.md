@@ -1,30 +1,32 @@
 # my-skills · 个人技能库（Claude Code / Cursor / Codex / 豆包 四端通用）
 
-一个公开的 AI 编程技能库：**40 个技能**，分 **原创（`original/`）** 与 **收藏（`curated/`）** 两区，Claude Code、Cursor、Codex、豆包四端开箱即用。
+一个公开的 AI 编程技能库：**42 个技能**，分 **原创（`original/`）** 与 **收藏（`curated/`）** 两区，Claude Code、Cursor、Codex、豆包四端开箱即用。
 
 > **给 AI Agent 的快速导航**：收到"把技能发布到本仓库 / 按本仓库规范处理技能"的请求时，先读 [`original/USAGE.md`](original/USAGE.md)（发布与使用完整规范），安装方法见下方「安装（四端）」，人类用户新增原创技能见「发布原创技能」。
 
 ## 亮点
 
-- **40 个技能全部可用**：38 个收藏 + 2 个原创，每个都是标准 `SKILL.md`（frontmatter + 附属文件）
-- **来源可溯源**：37 个收藏技能已核实来自 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT License）；1 个为上游已移除技能的历史版本；`original/` 下 2 个为用户原创
+- **42 个技能全部可用**：38 个收藏 + 4 个原创，每个都是标准 `SKILL.md`（frontmatter + 附属文件）
+- **来源可溯源**：37 个收藏技能已核实来自 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT License）；1 个为上游已移除技能的历史版本；`original/` 下 4 个为用户原创
 - **四端安装**：Claude Code 走 marketplace，Cursor / Codex 走 skills CLI，豆包直接上传技能目录
-- **实测**（本地路径）：`npx skills add /path/to/my-skills --list` 可在仓库根级发现全部 40 个技能（两层分区均可被 skills CLI 扫描）
+- **实测**（本地路径）：`npx skills add /path/to/my-skills --list` 可在仓库根级发现全部 42 个技能（两层分区均可被 skills CLI 扫描）
 
 ## 仓库结构
 
 ```
 my-skills/
-├── original/                # 个人原创技能区（当前 2 个：cn-blog-writing、chinese-technical-report）
+├── original/                # 个人原创技能区（当前 4 个）
 │   ├── INDEX.md             # 原创技能索引
 │   ├── USAGE.md             # 使用方法 + 上传/发布原创技能规范（Agent 与用户必读）
 │   ├── TEMPLATE.md          # 新技能模板（复制它起步）
 │   ├── cn-blog-writing/     # 中文技术博客编写（掘金/知乎）
-│   └── chinese-technical-report/  # 中文技术/赛题研究报告编写
+│   ├── chinese-technical-report/  # 中文技术/赛题研究报告编写
+│   ├── technical-standard-drafting/  # 技术标准/规范起草
+│   └── dev-language-selection/  # 开发语言选型决策
 ├── curated/                 # 收藏的第三方技能区（38 个，来自 mattpocock/skills）
 │   └── INDEX.md             # 收藏技能索引（逐技能来源 + 许可证）
 └── .claude-plugin/
-    └── marketplace.json     # Claude Code marketplace 清单（40 个 plugin）
+    └── marketplace.json     # Claude Code marketplace 清单（42 个 plugin）
 ```
 
 ## 安装（四端）

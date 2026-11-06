@@ -2,7 +2,10 @@
 
 一个公开的 AI 编程技能库：**42 个技能**，分 **原创（`original/`）** 与 **收藏（`curated/`）** 两区，Claude Code、Cursor、Codex、豆包四端开箱即用。
 
-> **给 AI Agent 的快速导航**：收到"把技能发布到本仓库 / 按本仓库规范处理技能"的请求时，先读 [`original/USAGE.md`](original/USAGE.md)（发布与使用完整规范），安装方法见下方「安装（四端）」，人类用户新增原创技能见「发布原创技能」。
+> **给 AI Agent 的快速导航**
+>
+> 1. **安装技能**：先读下方「安装源纪律（必读）」再执行命令；**禁止**对已装过 Matt 技能的机器执行整库 `npx skills add nancliu/my-skills`。
+> 2. **发布/更新原创技能**：先读 [`original/USAGE.md`](original/USAGE.md)，再按「发布原创技能」执行。
 
 ## 亮点
 
@@ -29,6 +32,30 @@ my-skills/
     └── marketplace.json     # Claude Code marketplace 清单（42 个 plugin）
 ```
 
+## 安装源纪律（必读）
+
+本仓库分两区，**安装源必须分开**，否则 skills CLI 会按**技能名**覆盖本地已装目录，把 `Source: mattpocock/skills` 改成 `nancliu/my-skills`。
+
+| 要装什么 | 正确安装源 | 正确命令形态 | 禁止 |
+| --- | --- | --- | --- |
+| Matt / 工作流技能（`tdd`、`research`、`writing-*` 等） | **上游** [mattpocock/skills](https://github.com/mattpocock/skills) | `npx skills add mattpocock/skills --skill <名> --agent cursor -y` | 从 `nancliu/my-skills` 的 `curated/` 再装一遍 |
+| 本仓库原创（`original/`） | **本仓库** [nancliu/my-skills](https://github.com/nancliu/my-skills) | `npx skills add nancliu/my-skills --skill original/<名> --agent <agent> -y` | 省略 `--skill` 的整库安装（会连带装 curated） |
+| 其它第三方（百炼、pstack、windows-scripting 等） | 各自上游仓库 | 按其 README | 不要指望它们在本仓库里 |
+
+**Agent 接到「安装 my-skills / 装上某某原创技能」时必须：**
+
+1. 只安装 `original/` 下目标技能；一次一个或多个，一律带 `--skill original/<技能名>`。
+2. 若用户要装 Matt 系技能：改走 `mattpocock/skills`，并说明不要从本仓库 `curated/` 装。
+3. 安装前可用 `npx skills list -g -a cursor`（或对应 agent）核对是否已存在同名技能；已存在且 Source 正确则跳过。
+4. **默认不做**整库安装：`npx skills add nancliu/my-skills --agent cursor -y`（无 `--skill`）。仅当用户明确说「整库覆盖安装 / 本机尚无 Matt 技能」时才可整库装。
+
+当前 `original/` 技能名（安装时原样使用）：
+
+- `original/cn-blog-writing`
+- `original/chinese-technical-report`
+- `original/technical-standard-drafting`
+- `original/dev-language-selection`
+
 ## 安装（四端）
 
 ### Claude Code
@@ -39,34 +66,41 @@ my-skills/
 /plugin marketplace add nancliu/my-skills
 ```
 
-然后用 `/plugin` 查看并按需启用技能。注意：marketplace.json 的 `source` 用的是 `./curated/...`、`./original/...` 相对路径，官方规定**仅在以 Git 方式添加 marketplace 时生效**（[官方文档](https://code.claude.com/docs/en/plugin-marketplaces)），因此请用仓库 URL 添加，不要用本地路径。
+然后用 `/plugin` **按需启用**技能（优先只开 `original/`；Matt 系若已从上游 marketplace/技能源装过，不要重复开同名 curated）。注意：marketplace.json 的 `source` 用的是 `./curated/...`、`./original/...` 相对路径，官方规定**仅在以 Git 方式添加 marketplace 时生效**（[官方文档](https://code.claude.com/docs/en/plugin-marketplaces)），因此请用仓库 URL 添加，不要用本地路径。
 
 ### Cursor / Codex（skills CLI）
 
 用 Vercel 开源的 skills CLI（npm 包 `skills`）：
 
 ```bash
-# 预览仓库技能（实测根级可发现全部 40 个）
+# 预览本仓库技能（含 original + curated）
 npx skills add nancliu/my-skills --list
 
-# 全部安装到默认位置（~/.claude/skills）
-npx skills add nancliu/my-skills -y -g
+# ✅ 推荐：只装本仓库原创（示例：语言选型）
+npx skills add nancliu/my-skills --skill original/dev-language-selection --agent cursor -y
 
-# Cursor：写入 .cursor/skills
-npx skills add nancliu/my-skills --agent cursor -y
+# ✅ 一次装多个原创（重复 --skill）
+npx skills add nancliu/my-skills \
+  --skill original/cn-blog-writing \
+  --skill original/chinese-technical-report \
+  --skill original/technical-standard-drafting \
+  --skill original/dev-language-selection \
+  --agent cursor -y
 
-# Codex：写入 ~/.codex/skills
-npx skills add nancliu/my-skills --agent codex -y
+# ✅ Matt 系：走上游，不要走本仓库 curated
+npx skills add mattpocock/skills --skill tdd --agent cursor -y
 
-# 只装某一个（如 tdd）
-npx skills add nancliu/my-skills --skill curated/tdd -y
+# ❌ 避免（已装 Matt 时会覆盖 Source）
+# npx skills add nancliu/my-skills --agent cursor -y
 
+# Codex 同理，把 --agent cursor 换成 --agent codex
 # 本地调试：把仓库地址换成 /path/to/my-skills 即可
 ```
 
 ### 豆包（客户端上传）
 
-豆包没有 CLI 安装通道：客户端「技能 → 新建 → 上传技能」，把 `curated/<技能名>/` 或 `original/<技能名>/` 整个目录拖入即可；豆包会加载本地技能目录，两个分区均可这样上传。
+豆包没有 CLI 安装通道：客户端「技能 → 新建 → 上传技能」，把 **`original/<技能名>/` 整个目录**拖入即可。  
+Matt 系技能请从 [mattpocock/skills](https://github.com/mattpocock/skills) 对应目录上传，**不要**从本仓库 `curated/` 再传一份（同名会打架）。
 
 ## 发布原创技能（新增 / 更新）
 
@@ -75,7 +109,8 @@ npx skills add nancliu/my-skills --skill curated/tdd -y
 - 技能 = 一个目录：`original/<kebab-case 技能名>/SKILL.md`，frontmatter 必须含 `name`（与目录名一致）与 `description`（一句话：做什么 + 何时用）；
 - 新技能放 `original/`，第三方收藏放 `curated/`；
 - 同步登记两处：`.claude-plugin/marketplace.json` 加一条 plugin（`source: "./original/<技能名>"`）、`original/INDEX.md` 加一行；
-- 提交推送：`git add -A && git commit -m "add skill: <技能名>" && git push`（仓库 `github.com/nancliu/my-skills`）。
+- 提交推送：`git add -A && git commit -m "add skill: <技能名>" && git push`（仓库 `github.com/nancliu/my-skills`）；
+- 本机生效：`npx skills add nancliu/my-skills --skill original/<技能名> --agent cursor -y`（**禁止**整库重装）。
 
 人类用户手动流程（5 步）：
 
@@ -83,19 +118,22 @@ npx skills add nancliu/my-skills --skill curated/tdd -y
 2. 填写 frontmatter：`name`（与目录名一致）、`description`（一句话说清"做什么 + 何时用"，它会原样进入 marketplace.json 与 INDEX）；
 3. 按模板写正文（When to use / Steps）；
 4. 在 `.claude-plugin/marketplace.json` 加一条 plugin（`source: "./original/<你的技能名>"`），并在 `original/INDEX.md` 加一行；
-5. 按上方四端方法安装 / 上传即生效。
+5. 按「安装源纪律」只装该 `original/<技能名>`，不要整库安装。
 
 ## 来源与许可
 
-- **curated/ 37 个技能**：来自 [mattpocock/skills](https://github.com/mattpocock/skills)（Matt Pocock / Total TypeScript），**MIT License**（[LICENSE](https://github.com/mattpocock/skills/blob/main/LICENSE)，Copyright (c) 2026 Matt Pocock）。其中 6 个在上游仍属 `in-progress`（claude-handoff、loop-me、setup-ts-deep-modules、writing-beats、writing-fragments、writing-shape）。
-- **curated/resolving-merge-conflicts**：上游已移除（删除记录见上游仓库 `.changeset/`），本仓库保留的是历史版本，MIT 许可不变。
-- **original/cn-blog-writing**：用户原创（本地开发），基于 mattpocock/skills 的 writing-* 系列方法论二次创作。
-- **original/chinese-technical-report**：用户原创（自 traffic-sim-agent 赛题报告规范提炼），章—节—段与图表规范；知识库同步清单为示例。
+- **curated/**：镜像/收藏区，便于对照与 Claude marketplace 一站启用；**日常安装仍以 [mattpocock/skills](https://github.com/mattpocock/skills) 为权威源**（MIT License，[LICENSE](https://github.com/mattpocock/skills/blob/main/LICENSE)）。其中 6 个在上游仍属 `in-progress`（claude-handoff、loop-me、setup-ts-deep-modules、writing-beats、writing-fragments、writing-shape）。
+- **curated/resolving-merge-conflicts**：上游已移除，本仓库保留历史版本，MIT 许可不变；仅此技能可考虑从本仓库安装（上游已无）。
+- **original/cn-blog-writing**：用户原创；基于 writing-* 方法论二次创作。
+- **original/chinese-technical-report**：用户原创（研究报告规范）。
+- **original/technical-standard-drafting**：用户原创（技术标准/规范起草）。
+- **original/dev-language-selection**：用户原创（开发语言选型决策）。
 - 公开本仓库时请保留各技能目录内的上游许可证声明。
 
-> 数字口径（核验时间 2026-10-05）：40 技能 = curated 38（上游现役 37 + 历史版本 1）+ original 2。
+> 数字口径：42 技能 = curated 38（上游现役 37 + 历史版本 1）+ original 4。
 
 ## 开始使用
 
-1. 仓库已推送至 GitHub（`github.com/nancliu/my-skills`），按上方四端任一方式安装即可；
-2. 新增/更新技能：改 `original/` 或 `curated/` 后 `git commit && git push` 即生效。
+1. 原创技能：按「安装源纪律」从 `nancliu/my-skills` **带 `--skill original/...`** 安装；
+2. Matt 技能：从 `mattpocock/skills` 安装；
+3. 新增/更新原创：改 `original/` 后按 USAGE 登记并 `git commit && git push`。

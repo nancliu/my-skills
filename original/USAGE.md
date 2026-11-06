@@ -8,14 +8,36 @@
 一个技能 = 一个目录（`SKILL.md` + 附属文件）。Agent 依据 `SKILL.md` frontmatter 中的
 `description` 自动匹配任务并加载技能，无需手动开关。
 
-面向用户的四端安装（仓库地址 `github.com/nancliu/my-skills`）：
+### 1.1 安装源纪律（Agent 必守）
+
+完整规则以仓库根目录 [`README.md`](../README.md)「安装源纪律（必读）」为准。摘要：
+
+| 技能类型 | 安装源 | 命令要点 |
+| --- | --- | --- |
+| `original/*`（本仓库原创） | `nancliu/my-skills` | **必须** `--skill original/<名>`；禁止无 `--skill` 整库装 |
+| Matt / curated 同名技能 | `mattpocock/skills` | **不要**从本仓库 `curated/` 再装 |
+| 其它第三方 | 各自上游 | 不在本仓库范围 |
+
+用户说「把 my-skills 装上 / 装语言选型技能」时，正确示例：
+
+```bash
+npx skills add nancliu/my-skills --skill original/dev-language-selection --agent cursor -y
+```
+
+错误示例（已装 Matt 时会覆盖 Source）：
+
+```bash
+npx skills add nancliu/my-skills --agent cursor -y
+```
+
+### 1.2 四端安装入口
 
 | 端 | 方式 |
 | --- | --- |
-| Claude Code | `/plugin marketplace add nancliu/my-skills` |
-| Cursor | `npx skills add nancliu/my-skills --agent cursor -y` |
-| Codex | `npx skills add nancliu/my-skills --agent codex -y` |
-| 豆包 | 客户端「技能 → 新建 → 上传技能」，拖入 `curated/<技能名>/` 或 `original/<技能名>/` 目录 |
+| Claude Code | `/plugin marketplace add nancliu/my-skills`，再按需启用 **original** 插件 |
+| Cursor | `npx skills add nancliu/my-skills --skill original/<名> --agent cursor -y` |
+| Codex | `npx skills add nancliu/my-skills --skill original/<名> --agent codex -y` |
+| 豆包 | 客户端上传 **`original/<技能名>/`** 目录（不要传 curated） |
 
 ## 2. 新增原创技能（上传流程）
 
@@ -32,7 +54,11 @@
    （`source: "./original/<技能名>"`），并在 `original/INDEX.md` 加一行。
 5. **发布**：`git add -A && git commit -m "add skill: <技能名>" && git push`
    （推送至 `git@github.com:nancliu/my-skills.git`）。
-6. **验证**：`npx skills add nancliu/my-skills --list` 应能看到新技能。
+6. **本机安装（只装新技能）**：
+   `npx skills add nancliu/my-skills --skill original/<技能名> --agent cursor -y`
+   （禁止无 `--skill` 的整库安装，以免覆盖已装 Matt 技能的 Source）。
+7. **验证**：`npx skills add nancliu/my-skills --list` 能看到新技能；
+   `npx skills list -g -a cursor` 中该技能 Source 为 `nancliu/my-skills`。
 
 ## 3. 更新与删除
 

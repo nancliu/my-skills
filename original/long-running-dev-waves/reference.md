@@ -48,4 +48,20 @@ Two "disjoint" tickets both rewrite the same GUI smoke test or verify index. Imp
 
 ## Orphan worktrees after land
 
-Each ticket/arena/retro gets `git worktree add`, but land and env retro never remove the trees. Sibling folders pile up next to trunk; later agents open stale checkouts by mistake. Fix: **Worktree reclaim** after each wave land, plus completion-audit survivors-only-with-reason. On Windows, an empty locked directory after `worktree remove` is reported debt—do not block the next frontier waiting on the lock.
+Each ticket/arena/retro gets `git worktree add`, but land and env retro never remove the trees. Sibling folders pile up next to trunk; later agents open stale checkouts by mistake. Fix: **Post-land hygiene** worktree reclaim after each wave land, plus completion-audit survivors-only-with-reason. On Windows, an empty locked directory after `worktree remove` is reported debt—do not block the next frontier waiting on the lock.
+
+## Stale trunk and leftover branch refs
+
+Local trunk stays behind `origin/<trunk>` while dozens of squash-merged `feat/*` / `chore/*` / `arena/*` branches linger locally and on the forge. The next wave then forks from yesterday's tip and agents reopen dead branches by name. Fix: post-land **refresh trunk**, `branch -d`/`-D` after confirming merge, remote head delete (or merge `--delete-branch`), then `fetch --prune`.
+
+## Stacked PR base left on a dead parent
+
+A dependent PR still bases on a sibling that already squash-merged and whose head was deleted. Forge checks rot; retarget is forgotten. Fix: Shipping step for stacked PRs—retarget to trunk, replay commits, lease-safe force on the feature branch only, re-verify before land.
+
+## Ticket stays open after squash
+
+Squash merge without `Fixes #n` (or forge autoclosed disabled) leaves the tracker ticket open while the PR is green history. Frontier queries look non-empty. Fix: after merge, read tracker state; close with the merge SHA if still open.
+
+## README lag after user-visible land
+
+Install steps, feature lists, or screenshots in the product README still describe the pre-wave app. Fix: Feature brief docs line + verify spot-check + completion audit—update README in the feature PR when cheap, else a tiny docs follow-up before calling the ticket done.

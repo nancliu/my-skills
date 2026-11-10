@@ -26,7 +26,7 @@ my-skills/
 │   ├── chinese-technical-report/  # 中文技术/赛题研究报告编写
 │   ├── technical-standard-drafting/  # 技术标准/规范起草
 │   ├── dev-language-selection/  # 开发语言选型决策
-│   ├── long-running-dev-waves/  # AFK 多票开发波次编排
+│   ├── long-running-dev-waves/  # AFK 多票波次 + 合入后 hygiene（0.6）
 │   └── release-windows-python/  # Windows Python 桌面发版编排
 ├── curated/                 # 收藏的第三方技能区（38 个，来自 mattpocock/skills）
 │   └── INDEX.md             # 收藏技能索引（逐技能来源 + 许可证）
@@ -113,6 +113,7 @@ Matt 系技能请从 [mattpocock/skills](https://github.com/mattpocock/skills) �
 - 技能 = 一个目录：`original/<kebab-case 技能名>/SKILL.md`，frontmatter 必须含 `name`（与目录名一致）与 `description`（一句话：做什么 + 何时用）；
 - 新技能放 `original/`，第三方收藏放 `curated/`；
 - 同步登记两处：`.claude-plugin/marketplace.json` 加一条 plugin（`source: "./original/<技能名>"`）、`original/INDEX.md` 加一行；
+- **更新已有技能且改了 `description`/行为摘要时**：marketplace、INDEX、根 `README.md` 对应说明一并改到一致（见 `original/USAGE.md` §3）；
 - 提交推送：`git add -A && git commit -m "add skill: <技能名>" && git push`（仓库 `github.com/nancliu/my-skills`）；
 - 本机生效：`npx skills add nancliu/my-skills --skill original/<技能名> --agent cursor -y`（**禁止**整库重装）。
 
@@ -132,7 +133,7 @@ Matt 系技能请从 [mattpocock/skills](https://github.com/mattpocock/skills) �
 - **original/chinese-technical-report**：用户原创（研究报告规范）。
 - **original/technical-standard-drafting**：用户原创（技术标准/规范起草）。
 - **original/dev-language-selection**：用户原创（开发语言选型决策）。
-- **original/long-running-dev-waves**：用户原创（AFK 多票开发波次编排 + human-gates）。
+- **original/long-running-dev-waves**：用户原创（AFK 多票开发波次编排 + human-gates；合入后刷新 trunk、回收 worktree、清理本地/远程分支、核对 ticket、叠 PR retarget、用户可见变更时更新产品 README）。
 - **original/release-windows-python**：用户原创（编排 generating-python-installer + ship 的 Windows 桌面发版）。
 - 公开本仓库时请保留各技能目录内的上游许可证声明。
 

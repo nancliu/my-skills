@@ -101,6 +101,15 @@ Kinds:
 - **do not:** block the wave on "which seams should we test?"; do not strip TDD—still red-green at those seams.
 - **override:** operator explicitly demands a seam interview for that ticket (rare); then ask once and record the answer in the ticket.
 
+### GATE-009 — orphan edits on trunk during a wave
+
+- **since:** 0.6.0
+- **kind:** `special-case`
+- **when:** post-land hygiene finds uncommitted **tracked** edits on the trunk checkout that are not part of an intentional in-progress follow-up the operator already named.
+- **do:** classify quickly: (a) fold into an existing open ticket or a tiny follow-up PR and open it; (b) if clearly accidental residue from a merged change, discard after showing the diff in the wave report; (c) if product preference is unclear, ask once (GATE-001) then continue.
+- **do not:** silently leave dirty trunk and spawn the next wave from it; do not `reset --hard` without classifying; do not invent a large cleanup ticket for ignored build/output caches.
+- **override:** operator says keep the dirty tree / names which paths to preserve.
+
 ## Deferred / to add in later versions
 
 Use this list as a backlog for skill authors (not runtime noise). Move an item into **Active gates** only when the procedure is sharp enough to follow without improvising.
@@ -111,5 +120,4 @@ Use this list as a backlog for skill authors (not runtime noise). Move an item i
 - Apply/command no-op vs UI side effects (candidate standards pointer for env retro).
 - Parallel seam union on rebase (already in main skill Parallel-land hygiene; promote only if a sharper gate is needed).
 - Tracker comments via shell here-strings that break on CJK punctuation: prefer `--body-file` (candidate special-case).
-- Orphan uncommitted edits on the trunk worktree during a wave: fold into a ticket or a tiny follow-up PR (candidate special-case).
 - Babysit watcher runtime missing (Bun/`watch-pr`): forge-CLI check already in `SKILL.md`; promote only if a sharper ask/fallback order is needed.

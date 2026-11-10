@@ -63,6 +63,7 @@ npx skills add nancliu/my-skills --agent cursor -y
 ## 3. 更新与删除
 
 - **更新**：直接改技能目录内容后 push；symlink 方式安装的端会自动同步，copy 方式安装的需重装一次。
+- **description 变更时**：除 `SKILL.md` frontmatter 外，同步 `.claude-plugin/marketplace.json`、`original/INDEX.md`，并在根目录 `README.md` 对应技能说明处改到一致（结构树一行 +「来源与许可」一行，若文案概括了行为）。带 `VERSION.md` 的技能按该文件的 bump 清单执行。
 - **删除**：删技能目录 + marketplace.json 删对应条目 + INDEX 删行 + push。
 
 ## 4. 来源与许可

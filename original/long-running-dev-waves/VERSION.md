@@ -1,11 +1,12 @@
 # Version registry
 
-**Current:** `0.5.0`
+**Current:** `0.6.0`
 
 Semver for this skill only (not the product repo).
 
 | Version | Kind | Summary |
 | --- | --- | --- |
+| `0.6.0` | minor | Post-land hygiene (trunk, branches, prune, stack retarget, ticket close, README); GATE-009 |
 | `0.5.0` | minor | Worktree reclaim after each wave land; completion-audit survivors; orphan-worktree failure mode |
 | `0.4.0` | minor | Strip product brand from GATE-007; skip to-spec on single ready cuts; GATE-004「自动完成」; babysit forge-CLI fallback |
 | `0.3.0` | minor | GATE-007 Align→ready labels; GATE-008 AFK Feature brief / TDD seams; brief template |
@@ -19,6 +20,7 @@ Semver for this skill only (not the product repo).
 3. Add a matching section under **Changelog** below.
 4. Set **Current** to the new version.
 5. If the change is a new ask-human exception or special-case handler, also add/update an entry in `human-gates.md` with `since: <version>`.
+6. If the skill's one-line behavior summary changed, refresh `description` in `SKILL.md` frontmatter **and** the copies in `.claude-plugin/marketplace.json`, `original/INDEX.md`, and the matching blurb in the repo root `README.md`.
 
 ### Version kind
 
@@ -27,6 +29,15 @@ Semver for this skill only (not the product repo).
 - **major** (`x.0.0`): incompatible loop change (e.g. Shipping no longer required, or Align/Build order inverted).
 
 ## Changelog
+
+### 0.6.0
+
+- **Post-land hygiene** replaces bare worktree reclaim: refresh trunk, reclaim worktrees, delete merged local branches, delete/prune remote heads, trunk dirt check (GATE-009).
+- **Shipping**: prefer `--delete-branch`; confirm tracker ticket closed; stacked PR retarget onto trunk.
+- **Docs**: Feature brief + verify + completion audit require product README / landing docs to match user-visible landings.
+- **GATE-009**: orphan tracked edits on trunk during a wave.
+- `reference.md`: stale trunk/refs, stacked dead base, open ticket after squash, README lag.
+- Skill-author note: bump must refresh marketplace / INDEX / root README when the description changes.
 
 ### 0.5.0
 

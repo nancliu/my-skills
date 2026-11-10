@@ -1,6 +1,6 @@
 # my-skills · 个人技能库（Claude Code / Cursor / Codex / 豆包 四端通用）
 
-一个公开的 AI 编程技能库：**42 个技能**，分 **原创（`original/`）** 与 **收藏（`curated/`）** 两区，Claude Code、Cursor、Codex、豆包四端开箱即用。
+一个公开的 AI 编程技能库：**43 个技能**，分 **原创（`original/`）** 与 **收藏（`curated/`）** 两区，Claude Code、Cursor、Codex、豆包四端开箱即用。
 
 > **给 AI Agent 的快速导航**
 >
@@ -9,27 +9,28 @@
 
 ## 亮点
 
-- **42 个技能全部可用**：38 个收藏 + 4 个原创，每个都是标准 `SKILL.md`（frontmatter + 附属文件）
+- **43 个技能全部可用**：38 个收藏 + 5 个原创，每个都是标准 `SKILL.md`（frontmatter + 附属文件）
 - **来源可溯源**：37 个收藏技能已核实来自 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT License）；1 个为上游已移除技能的历史版本；`original/` 下 4 个为用户原创
 - **四端安装**：Claude Code 走 marketplace，Cursor / Codex 走 skills CLI，豆包直接上传技能目录
-- **实测**（本地路径）：`npx skills add /path/to/my-skills --list` 可在仓库根级发现全部 42 个技能（两层分区均可被 skills CLI 扫描）
+- **实测**（本地路径）：`npx skills add /path/to/my-skills --list` 可在仓库根级发现全部 43 个技能（两层分区均可被 skills CLI 扫描）
 
 ## 仓库结构
 
 ```
 my-skills/
-├── original/                # 个人原创技能区（当前 4 个）
+├── original/                # 个人原创技能区（当前 5 个）
 │   ├── INDEX.md             # 原创技能索引
 │   ├── USAGE.md             # 使用方法 + 上传/发布原创技能规范（Agent 与用户必读）
 │   ├── TEMPLATE.md          # 新技能模板（复制它起步）
 │   ├── cn-blog-writing/     # 中文技术博客编写（掘金/知乎）
 │   ├── chinese-technical-report/  # 中文技术/赛题研究报告编写
 │   ├── technical-standard-drafting/  # 技术标准/规范起草
-│   └── dev-language-selection/  # 开发语言选型决策
+│   ├── dev-language-selection/  # 开发语言选型决策
+│   └── long-running-dev-waves/  # AFK 多票开发波次编排
 ├── curated/                 # 收藏的第三方技能区（38 个，来自 mattpocock/skills）
 │   └── INDEX.md             # 收藏技能索引（逐技能来源 + 许可证）
 └── .claude-plugin/
-    └── marketplace.json     # Claude Code marketplace 清单（42 个 plugin）
+    └── marketplace.json     # Claude Code marketplace 清单（43 个 plugin）
 ```
 
 ## 安装源纪律（必读）
@@ -55,6 +56,7 @@ my-skills/
 - `original/chinese-technical-report`
 - `original/technical-standard-drafting`
 - `original/dev-language-selection`
+- `original/long-running-dev-waves`
 
 ## 安装（四端）
 
@@ -128,9 +130,10 @@ Matt 系技能请从 [mattpocock/skills](https://github.com/mattpocock/skills) �
 - **original/chinese-technical-report**：用户原创（研究报告规范）。
 - **original/technical-standard-drafting**：用户原创（技术标准/规范起草）。
 - **original/dev-language-selection**：用户原创（开发语言选型决策）。
+- **original/long-running-dev-waves**：用户原创（AFK 多票开发波次编排 + human-gates）。
 - 公开本仓库时请保留各技能目录内的上游许可证声明。
 
-> 数字口径：42 技能 = curated 38（上游现役 37 + 历史版本 1）+ original 4。
+> 数字口径：43 技能 = curated 38（上游现役 37 + 历史版本 1）+ original 5。
 
 ## 开始使用
 

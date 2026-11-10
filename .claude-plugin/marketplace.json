@@ -109,6 +109,11 @@
       "license": "MIT"
     },
     {
+      "name": "long-running-dev-waves",
+      "source": "./original/long-running-dev-waves",
+      "description": "Orchestrate long unattended development across a backlog of ready tickets: dependency-ordered waves, isolated worktrees, verify, two-axis review, independent ship verdict, merge, then environment retro. Use for AFK multi-issue delivery, auto-advance by blocked-by, or session-length coding goals that must not invent product scope. Maintains a versioned human-gates register for ask-human and special-case exceptions."
+    },
+    {
       "name": "loop-me",
       "source": "./curated/loop-me",
       "description": "Grill me about specs for the workflows I want to build, within this workspace.",

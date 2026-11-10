@@ -1,0 +1,5 @@
+
+# local skills CLI installs from repo cwd
+.agents/
+skills-lock.json
+

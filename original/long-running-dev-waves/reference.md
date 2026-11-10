@@ -45,3 +45,7 @@ Nested `/tdd` asks the human which seams to test; the long wave goes idle waitin
 ## Shared shell file parallelized anyway
 
 Two "disjoint" tickets both rewrite the same GUI smoke test or verify index. Implementation looks parallel; land pays the merge tax. Prefer serialize when the shared shell is unavoidable; on conflict, union entries (Parallel-land hygiene).
+
+## Orphan worktrees after land
+
+Each ticket/arena/retro gets `git worktree add`, but land and env retro never remove the trees. Sibling folders pile up next to trunk; later agents open stale checkouts by mistake. Fix: **Worktree reclaim** after each wave land, plus completion-audit survivors-only-with-reason. On Windows, an empty locked directory after `worktree remove` is reported debt—do not block the next frontier waiting on the lock.

@@ -3,10 +3,10 @@ name: long-running-dev-waves
 description: >-
   Orchestrate long unattended development across a backlog of ready tickets:
   dependency-ordered waves, isolated worktrees, verify, two-axis review,
-  independent ship verdict, merge, then environment retro. Use for AFK
-  multi-issue delivery, auto-advance by blocked-by, or session-length coding
-  goals that must not invent product scope. Maintains a versioned human-gates
-  register for ask-human and special-case exceptions.
+  independent ship verdict, merge, environment retro, then worktree reclaim.
+  Use for AFK multi-issue delivery, auto-advance by blocked-by, or
+  session-length coding goals that must not invent product scope. Maintains
+  a versioned human-gates register for ask-human and special-case exceptions.
 disable-model-invocation: true
 ---
 
@@ -91,6 +91,16 @@ When a sibling merges first:
 3. If the lesson is an AFK exception (ask-human or special-case), add or sharpen a gate in `human-gates.md` and bump this skill per `VERSION.md`—do not leave it only in chat.
 4. Do not block the next ticket on a pure write-up unless a guardrail is already broken.
 
+### Worktree reclaim
+
+After the wave's feature PRs (and any env-retro PR) have landed—or the wave records "no env change earned"—reclaim **this wave's** isolation trees before opening the next frontier. Do not wait for a separate disk-cleanup ask.
+
+1. From the trunk checkout, run `git worktree list`. Candidates are worktrees this wave created for feature / retro / arena (or bakeoff) branches whose PRs are merged or closed as wontfix.
+2. **Keep:** the trunk checkout; any worktree whose branch still has an open PR; any path with uncommitted **tracked** edits (show the diff and pause—do not delete WIP); any path an active/pinned chat is still driving.
+3. For each reclaimable path: `git worktree remove --force <path>`, then `git worktree prune`. If the directory survives (common on Windows file locks or ignored build artifacts), retry delete once; if still locked, record the absolute path in the wave report and continue—do not stall the next frontier on an empty locked folder.
+4. Arena / design-bakeoff siblings from this wave: reclaim once synthesis is landed or discarded. Do not leave `arena-*` trees "for later".
+5. Branch refs may remain until a later prune of merged locals; reclaiming the worktree is mandatory. Commits stay reachable via the forge.
+
 ## Completion audit
 
 Treat completion as unproven until checked against live state:
@@ -98,7 +108,8 @@ Treat completion as unproven until checked against live state:
 1. No in-scope ready tickets remain open (or only tickets whose blockers are out of scope).
 2. Every in-scope ticket is closed; every feature PR is merged (or explicitly wontfix).
 3. Latest wave retro merged, or recorded as "no env change earned".
-4. Prefer tracker + trunk tip evidence over chat memory.
+4. Session-created feature / retro / arena worktrees are removed, or each survivor has an explicit keep reason (open PR, tracked WIP, in-use chat). Locked empty dirs named in a wave report count as known debt, not as "still active".
+5. Prefer tracker + trunk tip evidence over chat memory.
 
 ## Anti-patterns
 
@@ -110,3 +121,4 @@ Treat completion as unproven until checked against live state:
 - Starting Build while in-scope tickets still carry only `needs-triage` after Align finished (GATE-007).
 - Spawning a Feature owner whose brief still asks the human to confirm TDD seams (GATE-008).
 - Inventing a one-off human exception in chat without registering it in `human-gates.md` on the next skill bump.
+- Leaving merged-wave worktrees on disk after land; reclaim is part of the wave, not a later optional cleanup playbook.

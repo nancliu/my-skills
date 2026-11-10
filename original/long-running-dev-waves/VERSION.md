@@ -1,11 +1,12 @@
 # Version registry
 
-**Current:** `0.4.0`
+**Current:** `0.5.0`
 
 Semver for this skill only (not the product repo).
 
 | Version | Kind | Summary |
 | --- | --- | --- |
+| `0.5.0` | minor | Worktree reclaim after each wave land; completion-audit survivors; orphan-worktree failure mode |
 | `0.4.0` | minor | Strip product brand from GATE-007; skip to-spec on single ready cuts; GATE-004「自动完成」; babysit forge-CLI fallback |
 | `0.3.0` | minor | GATE-007 Align→ready labels; GATE-008 AFK Feature brief / TDD seams; brief template |
 | `0.2.0` | minor | GATE-006 land-grant acquisition; clearer GATE-004 phrases; no silent stall after PASS |
@@ -26,6 +27,13 @@ Semver for this skill only (not the product repo).
 - **major** (`x.0.0`): incompatible loop change (e.g. Shipping no longer required, or Align/Build order inverted).
 
 ## Changelog
+
+### 0.5.0
+
+- **Worktree reclaim**: after feature (+ env-retro) land, remove this wave's feature / retro / arena worktrees before the next frontier; keep trunk, open-PR, tracked WIP, and in-use chats.
+- **Completion audit**: session-created isolation trees must be gone or named with a keep reason; locked empty dirs are reported debt, not active worktrees.
+- **Anti-pattern**: leaving merged-wave worktrees for a later disk-cleanup playbook.
+- `reference.md`: orphan worktrees after land.
 
 ### 0.4.0
 
